@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Registration</title>
+
+    <!--CSS Link-->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--Validations JS-->
+    <script type="text/javascript">
+        function matchpwd() {
+            var namec = document.volunteer_registration.name;
+            var pwdone = document.volunteer_registration.password.value;
+            var pwdtwo = document.volunteer_registration.password2.value;
+            var phno = document.volunteer_registration.phno.value;
+            var mailc = document.volunteer_registration.new_email;
+            var letters = /^[0-9]+$/;
+
+            if (namec.value === "") {
+                alert('Please fill in all fields.');
+                namec.focus();
+                return false;
+            } else if (pwdone !== pwdtwo) {
+                alert('Passwords must match.');
+                return false;
+            } else if (pwdone === "" || phno === "" || mailc.value === "") {
+                alert('Please fill in all fields.');
+                return false;
+            } else if (!phno.match(letters)) {
+                alert('Phone number must contain only numbers.');
+                return false;
+            } else if (!EmailValidation(mailc)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function EmailValidation(mailc) {
+            var letters = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (mailc.value === "") {
+                alert('Fill the Email Address Field');
+                mailc.focus();
+                return false;
+            } else if (mailc.value.match(letters)) {
+                return true;
+            } else {
+                alert('Invalid Email');
+                mailc.focus();
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+
+    <header>
+        <div class="logo">
+            <img src="images/icons/logo.png" height="50px" width="150px" alt="ZooParc Logo">
+        </div>
+
+        <a href="#" class="brand"></a>
+        <div class="menu-btn">
+            <div class="navigation">
+                <div class="navigation-items">
+                    <a href="index.php">Home</a>
+                    <a href="animals.php">Animals</a>
+    
+                        <div class="dropdown">
+                        <a href="#">Zoo Parc ▼</a>
+                        <div class="dropdown-content">
+                                <a href="learn.php">Education Area</a>
+                                <a href="events.php">Events</a>
+                                <a href="food.php">Food Outlets</a>
+                                <a href="about.php">About Us</a>
+    
+                            </div></div>
+                            <div class="dropdown">
+                            <a href="#">More ▼</a>
+                            <div class="dropdown-content">
+                                <a href="admin_dashboard.php">Admin Dashboard</a>
+                                <a href="volunteer_dashboard.php">Volunteer Dashboard</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <form action="search.php" method="POST">
+                <input type="text" name="search" placeholder="Search...">
+                <button type="submit">
+                <img src="images/icons/search.png" width="14px" height="14px" alt="Search"></button>
+            </form>
+        </div>
+
+        <div class="auth-buttons">
+            <a href="login.html" class="auth-button">Login</a>
+            <a href="volunteer_registration.html" class="auth-button">Volunteer Registration</a>
+        </div>
+    </header>
+<br><br><br><br><hr><br>
+
+
+    <main>
+        <!--Form-->
+        <div class="container">
+            <div class="form-container">
+                <h2>Volunteer Registration</h2>
+                <form name="volunteer_registration" action="submit_volunteer.php" method="POST" onsubmit="return matchpwd()">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new_email">Email</label>
+                        <input type="email" id="new_email" name="new_email" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" >
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" >
+                    </div>
+                    <div class="form-group">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" id="password2" name="password2" >
+                    </div>
+                    <div class="form-group">
+                        <label for="phno">Phone Number</label>
+                        <input type="text" id="phno" name="phno" >
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="image-container">
+                <img src="images/backgrounds/bg1.jpg" alt="Volunteer">
+                <h3>Join Us and Make a Difference!</h3>
+                <p>We are always looking for passionate individuals to help us with our mission. Sign up today and be part of our team.</p>
+                <a href="about.php" class="button">Learn More</a>
+            </div>
+        </div>
+    </main>
+</div>
+    <section class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <div class="logo">
+                    <img src="images\icons/darklogo.png" alt="Logo">
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Qucik Links</h4>
+                <ul class="link-list">
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="animals.php">Animals</a></li>
+                    <li><a href="learn.php">Educational <Area></Area></a></li>
+                    <li><a href="events.php">Events</a></li>
+                    <li><a href="food.php">Food Outlets</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Explore</h4>
+                <ul class="link-list">
+                    <li><a href="login.html">Volunteer Login</a></li>
+                    <li><a href="volunteer_registration.html">Volunteer Registration</a></li>
+    
+            </div>
+    
+            <div class="footer-section">
+                <h4>Feedbacks</h4>
+                <p>
+                We value your input! Please enter your feedback to help us improve and serve you better.
+                </p>
+                <form action="feedback.php" method="POST">
+                    <input type="text" name="feedback" placeholder="type here.." required>
+                    <button type="submit">Send</button>
+                </form>
+    
+            </div>
+        </div>
+    </section>
+    
+    
+</body>
+</html>
